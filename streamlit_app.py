@@ -16,11 +16,14 @@ def cargar_datos():
     if uploaded_file is not None:
         # Leer el archivo CSV y cargarlo en un DataFrame
         df = pd.read_csv(uploaded_file)
+        Lista1=pd.DataFrame(df)
+        Lista1.drop([0], axis=0,inplace=True)
+        Lista1.drop([0], axis=1,inplace=True)
 
         # Mostrar el DataFrame
         st.write(df)
         
-        Transacciones = df.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
+        Transacciones = Lista1.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
         Lista = pd.DataFrame(Transacciones)
         Lista['Frecuencia'] = 1
         Lista = Lista.groupby(by=[0], as_index=False).count().sort_values(by=['Frecuencia'], ascending=True) #Conteo
@@ -32,7 +35,7 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
-    return uploaded_file
+    return Lista
 
     
 
