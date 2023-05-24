@@ -27,6 +27,4 @@ if uploaded_file is not None:
     plt.ylabel('Item')
     plt.xlabel('Frecuencia')
     plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
-    grafica_path = 'grafica.png'
-    image = plt.savefig(grafica_path)
-    st.image("grafica.png", caption="Carga pofavo", use_column_width=True)
+    st.pyplot()
