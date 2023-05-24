@@ -1,8 +1,47 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt 
+    
+# Estilos CSS para personalizar la barra de navegación
+css = """
+<style>
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .navbar-item {
+        margin: 0 10px;
+    }
+</style>
+"""
 
-# Título de la página
+# Aplicar los estilos CSS
+st.markdown(css, unsafe_allow_html=True)
+
+# Opciones de navegación y contenido de las páginas
+pages = {
+    "Inicio": "¡Bienvenido a la página de inicio!",
+    "Página 1": "Este es el contenido de la página 1.",
+    "Página 2": "Aquí tienes el contenido de la página 2.",
+    "Página 3": "Este es el contenido de la página 3."
+}
+
+# Mostrar la barra de navegación en la parte superior
+selected_page = st.sidebar.radio("", list(pages.keys()), index=0, key="navbar")
+
+# Renderizar la página seleccionada
+st.title(selected_page)
+
+if selected_page == "Inicio":
+    st.write(pages[selected_page])
+
+elif selected_page == "Página 1":
+    st.write(pages[selected_page])
+    # Título de la página
 st.title("Carga de archivo CSV en Streamlit")
 
 # Componente para cargar el archivo CSV
@@ -28,3 +67,6 @@ if uploaded_file is not None:
     plt.xlabel('Frecuencia')
     plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
     st.pyplot(fig)
+
+else:
+    st.write(pages[selected_page])
