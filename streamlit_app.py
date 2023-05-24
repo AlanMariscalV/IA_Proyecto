@@ -36,10 +36,7 @@ def cargar_datos():
 
 def apriori(data,soporte,elevacion,confianza):
     dataRecived = data.stack().groupby(level=0).apply(list).tolist()
-    ReglasC1 = apriori(dataRecived,
-                       min_support=soporte, 
-                       min_confidence=confianza, 
-                       min_lift=elevacion)
+    ReglasC1 = apriori(dataRecived,soporte,confianza,elevacion)
     ResultadosC1 = list(ReglasC1)
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
