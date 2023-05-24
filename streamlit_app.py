@@ -49,6 +49,9 @@ def apriori2(data,soporte,elevacion,confianza):
         st.write("Confianza: " + str(item[2][0][2]))
         st.write("Elevación: " + str(item[2][0][3])) 
         st.write("<----------------------------------------> :)")
+def metricas(metrica_seleccionada):
+    print("hola")
+
 
 # Opciones de navegación y contenido de las páginas
 pages = {
@@ -76,6 +79,27 @@ if selected_page == "Algoritmo Apriori":
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
     cargar_datos()
+    # Casilla de verificación 1
+option1 = st.checkbox('Euclidiana')
+
+# Casilla de verificación 2
+option2 = st.checkbox('Manhattan')
+
+# Casilla de verificación 3
+option3 = st.checkbox('Chevishev')
+
+# Casilla de verificación 4
+option4 = st.checkbox('Minkowski')
+
+
+
+# Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
+if option1:
+    st.write('Opción 1 seleccionada')
+if option2:
+    st.write('Opción 2 seleccionada')
+if option3:
+    st.write('Opción 3 seleccionada')
 
 elif selected_page == "Clustering":
     st.write(pages[selected_page])
