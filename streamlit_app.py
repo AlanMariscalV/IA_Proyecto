@@ -44,15 +44,15 @@ def apriori2(data,soporte,elevacion,confianza):
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
         #El primer índice de la lista
-        Emparejar = item[0]
+        #Emparejar = item[0]
         #items = [x for x in Emparejar]
-        st.write("Regla: " + str(item[0]))
+        #st.write("Regla: " + str(item[0]))
     #El segundo índice de la lista
-        st.write("Soporte: " + str(item[1]))
+        #st.write("Soporte: " + str(item[1]))
         #El tercer índice de la lista
-        st.write("Confianza: " + str(item[2][0][2]))
-        st.write("Elevación: " + str(item[2][0][3])) 
-        st.write("=====================================") # Aquí deberíamos asociar el valor correspondiente a la etiqueta
+        #st.write("Confianza: " + str(item[2][0][2]))
+        #st.write("Elevación: " + str(item[2][0][3])) 
+        st.write(ResultadosC1 + "=====================================") # Aquí deberíamos asociar el valor correspondiente a la etiqueta
 
 
 # Opciones de navegación y contenido de las páginas
