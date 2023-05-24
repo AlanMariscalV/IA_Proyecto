@@ -36,10 +36,10 @@ def cargar_datos():
 
 def apriori(data,soporte,elevacion,confianza):
     dataRecived = data.stack().groupby(level=0).apply(list).tolist()
-    ReglasC1 = apriori(dataRecived, 
-                   min_support=soporte, 
-                   min_confidence=confianza, 
-                   min_lift=elevacion) #Base
+    ReglasC1 = apriori(dataRecived,
+                       min_support=soporte, 
+                       min_confidence=confianza, 
+                       min_lift=elevacion)
     ResultadosC1 = list(ReglasC1)
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
@@ -72,9 +72,6 @@ st.title(selected_page)
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
     dt = cargar_datos()
-    #datito =pd.read_csv(dt, header = None)
-    #datito.drop([0], axis=0,inplace=True)
-    #datito.drop([0], axis=1,inplace=True)
     soporte=st.number_input("Ingrese el soporte minimo requerido")
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
     confianza=st.number_input("Ingrese la confianza minima requerido")
