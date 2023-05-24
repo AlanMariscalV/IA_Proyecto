@@ -16,12 +16,12 @@ if uploaded_file is not None:
     # Mostrar el DataFrame
     st.write(df)
     
-    Transacciones = df.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
-    Lista = pd.DataFrame(Transacciones)
-    Lista['Frecuencia'] = 1
-    Lista = Lista.groupby(by=[0], as_index=False).count().sort_values(by=['Frecuencia'], ascending=True) #Conteo
-    Lista['Porcentaje'] = (Lista['Frecuencia'] / Lista['Frecuencia'].sum()) #Porcentaje
-    Lista = Lista.rename(columns={0 : 'Item'})
+   # Transacciones = df.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
+   # Lista = pd.DataFrame(Transacciones)
+   # Lista['Frecuencia'] = 1
+   # Lista = Lista.groupby(by=[0], as_index=False).count().sort_values(by=['Frecuencia'], ascending=True) #Conteo
+   # Lista['Porcentaje'] = (Lista['Frecuencia'] / Lista['Frecuencia'].sum()) #Porcentaje
+   # Lista = Lista.rename(columns={0 : 'Item'})
   
     #plt.figure(figsize=(16,20), dpi=300)
     #plt.ylabel('Item')
