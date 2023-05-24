@@ -36,10 +36,10 @@ def cargar_datos():
 
 # Opciones de navegación y contenido de las páginas
 pages = {
-    "Inicio": "¡Bienvenido a la página de inicio!",
-    "Página 1": "Este es el contenido de la página 1.",
-    "Página 2": "Aquí tienes el contenido de la página 2.",
-    "Página 3": "Este es el contenido de la página 3."
+    "Inicio": "Algortimo Apriori",
+    "Página 1": "Metricas de distancia",
+    "Página 2": "Clustering",
+    "Página 3": "Ti amo"
 }
 
 # Mostrar la barra de navegación en la parte superior
@@ -53,6 +53,14 @@ if selected_page == "Inicio":
     cargar_datos()
 
 elif selected_page == "Página 1":
+    st.write(pages[selected_page])
+    cargar_datos()
+
+elif selected_page == "Página 2":
+    st.write(pages[selected_page])
+    cargar_datos()
+
+elif selected_page == "Página 3":
     st.write(pages[selected_page])
     cargar_datos()
     
