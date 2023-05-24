@@ -37,7 +37,7 @@ def cargar_datos():
 # Opciones de navegación y contenido de las páginas
 pages = {
     "Algoritmo Apriori": "Aqui va teoria",
-    "Metricas de distancia ": "Aqui va teoria",
+    "Metricas de distancia": "Aqui va teoria",
     "Clustering": "Aqui va teoria",
     "Ti adoroooooo": "pque"
 }
