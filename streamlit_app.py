@@ -72,7 +72,7 @@ st.title(selected_page)
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
     dt = cargar_datos()
-    datito =pd.read_csv(dt, header = None)
+    #datito =pd.read_csv(dt, header = None)
     #datito.drop([0], axis=0,inplace=True)
     #datito.drop([0], axis=1,inplace=True)
     soporte=st.number_input("Ingrese el soporte minimo requerido")
