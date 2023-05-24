@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt 
 from apyori import apriori
     
@@ -8,30 +9,25 @@ from apyori import apriori
 def cargar_datos():
      # Componente para cargar el archivo CSV
     uploaded_file = st.file_uploader("Selecciona un archivo CSV", type=["csv"])
-
     # Verificar si se cargó un archivo
     if uploaded_file is not None:
         # Leer el archivo CSV y cargarlo en un DataFrame
         Lista1 = pd.read_csv(uploaded_file, header = None)
-        Lista1.drop([0], axis=0,inplace=True)
-        Lista1.drop([0], axis=1,inplace=True)
-        # Mostrar el DataFrame
-        st.write(Lista1)        
         Transacciones = Lista1.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
-        Lista1.stack().groupby(level=0).apply(list).tolist()
-        newList = Lista1
-
         Lista = pd.DataFrame(Transacciones)
         Lista['Frecuencia'] = 1
         Lista = Lista.groupby(by=[0], as_index=False).count().sort_values(by=['Frecuencia'], ascending=True) #Conteo
         Lista['Porcentaje'] = (Lista['Frecuencia'] / Lista['Frecuencia'].sum()) #Porcentaje
         Lista = Lista.rename(columns={0 : 'Item'})
-    
         fig=plt.figure(figsize=(16,20), dpi=300)
         plt.ylabel('Item')
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
+       # Mostrar el DataFrame
+        st.write(Lista1)        
+        Lista1.stack().groupby(level=0).apply(list).tolist()
+        newList = Lista1
         return newList
     return("No hay archivo disponible")
 
