@@ -72,12 +72,11 @@ st.title(selected_page)
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
     dt = cargar_datos()
-    dt_mod =pd.DataFrame(dt)
     soporte=st.number_input("Ingrese el soporte minimo requerido")
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
     confianza=st.number_input("Ingrese la confianza minima requerido")
     if st.button("Calcular regla"):
-       apriori(dt_mod, soporte, elevacion, confianza)
+       apriori(dt, soporte, elevacion, confianza)
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
