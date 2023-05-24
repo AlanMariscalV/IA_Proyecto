@@ -31,7 +31,7 @@ pages = {
 }
 
 # Mostrar la barra de navegación en la parte superior
-selected_page = st.sidebar.radio("", list(pages.keys()), index=0, key="navbar")
+selected_page = st.selectbox("", list(pages.keys()), index=0, key="navbar")
 
 # Renderizar la página seleccionada
 st.title(selected_page)
