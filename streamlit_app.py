@@ -36,11 +36,11 @@ def cargar_datos():
     return("No hay archivo disponible")
 
 def apriori2(data,soporte,elevacion,confianza):
-    ReglasC1 = apriori(data, 
+   
+    ResultadosC1 = list(apriori(data, 
                    min_support=soporte, 
                    min_confidence=confianza, 
-                   min_lift=elevacion)
-    ResultadosC1 = ReglasC1.tolist()
+                   min_lift=elevacion))
     #Rc1=pd.DataFrame(ResultadosC1)
     #for item in ResultadosC1:
         #El primer índice de la lista
