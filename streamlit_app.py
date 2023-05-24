@@ -32,7 +32,7 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
-    return df
+    return uploaded_file
 
     
 
