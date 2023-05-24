@@ -35,11 +35,11 @@ def cargar_datos():
         return newList
     return("No hay archivo disponible")
 
-def apriori(data,soporte,elevacion,confianza):
+def apriori2(data,soporte,elevacion,confianza):
     ReglasC1 = apriori(data, 
-                   soporte, 
-                   confianza, 
-                   elevacion)
+                   min_support=soporte, 
+                   min_confidence=confianza, 
+                   min_lift=elevacion)
     ResultadosC1 = list(ReglasC1)
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
@@ -76,7 +76,7 @@ if selected_page == "Algoritmo Apriori":
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
     confianza=st.number_input("Ingrese la confianza minima requerido")
     if st.button("Calcular regla"):
-       apriori(dt, soporte, elevacion, confianza)
+       apriori2(dt, soporte, elevacion, confianza)
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
