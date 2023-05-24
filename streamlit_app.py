@@ -35,7 +35,7 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
-    return Lista1
+        return Lista1
 
 def apriori(data,soporte,elevacion,confianza):
     dataRecived = data.stack().groupby(level=0).apply(list).tolist()
