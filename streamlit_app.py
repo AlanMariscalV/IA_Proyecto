@@ -45,7 +45,7 @@ def apriori2(data,soporte,elevacion,confianza):
     for item in ResultadosC1:
         #El primer índice de la lista
         Emparejar = item[0]
-        items = [x for x in Emparejar]
+        #items = [x for x in Emparejar]
         st.write("Regla: " + str(item[0]))
     #El segundo índice de la lista
         st.write("Soporte: " + str(item[1]))
