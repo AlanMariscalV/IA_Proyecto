@@ -15,11 +15,12 @@ def cargar_datos():
         Lista1 = pd.read_csv(uploaded_file, header = None)
         Lista1.drop([0], axis=0,inplace=True)
         Lista1.drop([0], axis=1,inplace=True)
-        newList = Lista1
         # Mostrar el DataFrame
-        st.write(Lista1)
-        
+        st.write(Lista1)        
         Transacciones = Lista1.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
+        Lista1.stack().groupby(level=0).apply(list).tolist()
+        newList = Lista1
+
         Lista = pd.DataFrame(Transacciones)
         Lista['Frecuencia'] = 1
         Lista = Lista.groupby(by=[0], as_index=False).count().sort_values(by=['Frecuencia'], ascending=True) #Conteo
@@ -35,8 +36,7 @@ def cargar_datos():
     return("No hay archivo disponible")
 
 def apriori(data,soporte,elevacion,confianza):
-    dataRecived = data.stack().groupby(level=0).apply(list).tolist()
-    ReglasC1 = apriori(dataRecived,soporte,confianza,elevacion)
+    ReglasC1 = apriori(data,soporte,confianza,elevacion)
     ResultadosC1 = list(ReglasC1)
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
