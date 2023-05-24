@@ -36,7 +36,7 @@ def cargar_datos():
     return("No hay archivo disponible")
 
 def apriori(data,soporte,elevacion,confianza):
-    ReglasC1 = apriori(VentaLista, 
+    ReglasC1 = apriori(data, 
                    min_support=soporte, 
                    min_confidence=confianza, 
                    min_lift=elevacion)
