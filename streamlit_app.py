@@ -31,7 +31,7 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
-        return pd.DataFrame(df)
+        return df
     return("No hay archivo disponible")
 
 def apriori(data,soporte,elevacion,confianza):
@@ -71,12 +71,12 @@ st.title(selected_page)
 
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
-    data = cargar_datos()
+    dt = cargar_datos()
     soporte=st.number_input("Ingrese el soporte minimo requerido")
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
     confianza=st.number_input("Ingrese la confianza minima requerido")
     if st.button("Calcular regla"):
-       apriori(data,soporte,elevacion,confianza)
+       apriori(dt, soporte, elevacion, confianza)
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
@@ -89,7 +89,6 @@ elif selected_page == "Clustering":
 elif selected_page == "Ti adoroooooo":
     st.write(pages[selected_page])
     cargar_datos()
-    
 
 else:
     st.write(pages[selected_page])
