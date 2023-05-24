@@ -36,10 +36,10 @@ def cargar_datos():
 
 # Opciones de navegación y contenido de las páginas
 pages = {
-    "Inicio": "Algortimo Apriori",
-    "Página 1": "Metricas de distancia",
-    "Página 2": "Clustering",
-    "Página 3": "Ti amo"
+    "Algoritmo Apriori": "Aqui va teoria",
+    "Metricas de distancia ": "Aqui va teoria",
+    "Clustering": "Aqui va teoria",
+    "Ti adoroooooo": "pque"
 }
 
 # Mostrar la barra de navegación en la parte superior
@@ -48,19 +48,19 @@ selected_page = st.selectbox("", list(pages.keys()), index=0, key="navbar")
 # Renderizar la página seleccionada
 st.title(selected_page)
 
-if selected_page == "Inicio":
+if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
     cargar_datos()
 
-elif selected_page == "Página 1":
+elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
     cargar_datos()
 
-elif selected_page == "Página 2":
+elif selected_page == "Clustering":
     st.write(pages[selected_page])
     cargar_datos()
 
-elif selected_page == "Página 3":
+elif selected_page == "Ti adoroooooo":
     st.write(pages[selected_page])
     cargar_datos()
     
