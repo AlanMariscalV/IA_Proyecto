@@ -23,8 +23,8 @@ if uploaded_file is not None:
     Lista['Porcentaje'] = (Lista['Frecuencia'] / Lista['Frecuencia'].sum()) #Porcentaje
     Lista = Lista.rename(columns={0 : 'Item'})
   
-    plt.figure(figsize=(16,20), dpi=300)
+    fig=plt.figure(figsize=(16,20), dpi=300)
     plt.ylabel('Item')
     plt.xlabel('Frecuencia')
     plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
-    st.pyplot()
+    st.pyplot(fig)
