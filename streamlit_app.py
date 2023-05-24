@@ -37,9 +37,9 @@ def cargar_datos():
 
 def apriori(data,soporte,elevacion,confianza):
     ReglasC1 = apriori(data, 
-                   min_support=soporte, 
-                   min_confidence=confianza, 
-                   min_lift=elevacion)
+                   soporte, 
+                   confianza, 
+                   elevacion)
     ResultadosC1 = list(ReglasC1)
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
