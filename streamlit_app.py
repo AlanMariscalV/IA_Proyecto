@@ -37,31 +37,7 @@ def cargar_datos():
         st.pyplot(fig)
     return Lista1
 
-    
-
-
-
-# Opciones de navegación y contenido de las páginas
-pages = {
-    "Algoritmo Apriori": "Aqui va teoria",
-    "Metricas de distancia": "Aqui va teoria",
-    "Clustering": "Aqui va teoria",
-    "Ti adoroooooo": "pque"
-}
-
-# Mostrar la barra de navegación en la parte superior
-selected_page = st.selectbox("", list(pages.keys()), index=0, key="navbar")
-
-# Renderizar la página seleccionada
-st.title(selected_page)
-
-if selected_page == "Algoritmo Apriori":
-    st.write(pages[selected_page])
-    data=cargar_datos()
-    soporte=st.number_input("Ingrese el soporte minimo requerido")
-    elevacion=st.number_input("Ingrese la elevacion minima requerido")
-    confianza=st.number_input("Ingrese la confianza minima requerido")
-    
+def apriori(data,soporte,elevacion,confianza):
     dataRecived = data.stack().groupby(level=0).apply(list).tolist()
     ReglasC1 = apriori(dataRecived, 
                    min_support=soporte, 
@@ -82,6 +58,38 @@ if selected_page == "Algoritmo Apriori":
         st.write("Elevación: " + str(item[2][0][3])) 
         st.write("=====================================") # Aquí deberíamos asociar el valor correspondiente a la etiqueta
 
+
+
+    
+
+
+
+# Opciones de navegación y contenido de las páginas
+pages = {
+    "Algoritmo Apriori": "Aqui va teoria",
+    "Metricas de distancia": "Aqui va teoria",
+    "Clustering": "Aqui va teoria",
+    "Ti adoroooooo": "pque"
+}
+
+# Mostrar la barra de navegación en la parte superior
+selected_page = st.selectbox("", list(pages.keys()), index=0, key="navbar")
+
+# Renderizar la página seleccionada
+st.title(selected_page)
+
+if selected_page == "Algoritmo Apriori":
+
+    st.write(pages[selected_page])
+    data=cargar_datos()
+    if data is not None:
+
+        soporte=st.number_input("Ingrese el soporte minimo requerido")
+        elevacion=st.number_input("Ingrese la elevacion minima requerido")
+        confianza=st.number_input("Ingrese la confianza minima requerido")
+        if st.button("Calcular regla"):
+            apriori(data,soporte,elevacion,confianza)
+    
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
     cargar_datos()
