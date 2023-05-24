@@ -1,7 +1,7 @@
 import streamlit as st
 st.title("intento imagen")
 
-uploaded_file=st.file_uploader("delecciona",type=["jpg","jpeg","png"])
+uploaded_file=st.file_uploader("selecciona",type=["jpg","jpeg","png"])
 
 if uploaded_file is not None:
 
