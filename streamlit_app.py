@@ -28,7 +28,6 @@ def cargar_datos():
         st.write(Lista1)        
         newList = Lista1.stack().groupby(level=0).apply(list).tolist()
         #newList = Lista1
-        st.write(newList)  
         return newList
     return("No hay archivo disponible")
 
@@ -38,18 +37,18 @@ def apriori2(data,soporte,elevacion,confianza):
                    min_support=soporte, 
                    min_confidence=confianza, 
                    min_lift=elevacion))
-    #Rc1=pd.DataFrame(ResultadosC1)
-    #for item in ResultadosC1:
+    Rc1=pd.DataFrame(ResultadosC1)
+    for item in ResultadosC1:
         #El primer índice de la lista
-        #Emparejar = item[0]
-        #items = [x for x in Emparejar]
-        #st.write("Regla: " + str(item[0]))
+        Emparejar = item[0]
+        items = [x for x in Emparejar]
+        st.write("Regla: " + str(item[0]))
     #El segundo índice de la lista
-        #st.write("Soporte: " + str(item[1]))
+        st.write("Soporte: " + str(item[1]))
         #El tercer índice de la lista
-        #st.write("Confianza: " + str(item[2][0][2]))
-        #st.write("Elevación: " + str(item[2][0][3])) 
-    st.write(ResultadosC1)
+        st.write("Confianza: " + str(item[2][0][2]))
+        st.write("Elevación: " + str(item[2][0][3])) 
+        st.write("<----------------------------------------> :)")
 
 # Opciones de navegación y contenido de las páginas
 pages = {
