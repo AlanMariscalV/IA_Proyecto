@@ -52,8 +52,7 @@ def apriori2(data,soporte,elevacion,confianza):
         #El tercer índice de la lista
         #st.write("Confianza: " + str(item[2][0][2]))
         #st.write("Elevación: " + str(item[2][0][3])) 
-    st.write(ReglasC1 + "=====================================") # Aquí deberíamos asociar el valor correspondiente a la etiqueta
-
+    st.write(ReglasC1)
 
 # Opciones de navegación y contenido de las páginas
 pages = {
