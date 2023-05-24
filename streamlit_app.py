@@ -40,7 +40,7 @@ def apriori2(data,soporte,elevacion,confianza):
                    min_support=soporte, 
                    min_confidence=confianza, 
                    min_lift=elevacion)
-    ResultadosC1 = list(ReglasC1)
+    ResultadosC1 = ReglasC1.tolist()
     #Rc1=pd.DataFrame(ResultadosC1)
     #for item in ResultadosC1:
         #El primer índice de la lista
