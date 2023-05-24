@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt 
+from apryori import apriori
+
+
 
     
 # Estilos CSS para personalizar la barra de navegación
@@ -29,6 +32,7 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
+    return df
 
     
 
@@ -50,7 +54,30 @@ st.title(selected_page)
 
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
-    cargar_datos()
+    data=cargar_datos()
+    soporte=st.number_input("Ingrese el soporte minimo requerido")
+    elevacion=st.number_input("Ingrese la elevacion minima requerido")
+    confianza=st.number_input("Ingrese la confianza minima requerido")
+    
+    dataRecived = data.stack().groupby(level=0).apply(list).tolist()
+    ReglasC1 = apriori(dataRecived, 
+                   min_support=soporte, 
+                   min_confidence=confianza, 
+                   min_lift=elevacion) #Base
+    ResultadosC1 = list(ReglasC1)
+    pd.DataFrame(ResultadosC1)
+    for item in ResultadosC1:
+        #El primer índice de la lista
+        Emparejar = item[0]
+        items = [x for x in Emparejar]
+        st.write("Regla: " + str(item[0]))
+    #El segundo índice de la lista
+        st.write("Soporte: " + str(item[1]))
+
+        #El tercer índice de la lista
+        st.write("Confianza: " + str(item[2][0][2]))
+        st.write("Elevación: " + str(item[2][0][3])) 
+        st.write("=====================================") # Aquí deberíamos asociar el valor correspondiente a la etiqueta
 
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
