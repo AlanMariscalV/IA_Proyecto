@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt 
 from apyori import apriori
-
-
-
     
 # Estilos CSS para personalizar la barra de navegación
 
@@ -15,13 +12,12 @@ def cargar_datos():
     # Verificar si se cargó un archivo
     if uploaded_file is not None:
         # Leer el archivo CSV y cargarlo en un DataFrame
-        df = pd.read_csv(uploaded_file)
-        Lista1=pd.DataFrame(df)
+        Lista1 = pd.read_csv(uploaded_file, header = None)
         Lista1.drop([0], axis=0,inplace=True)
         Lista1.drop([0], axis=1,inplace=True)
 
         # Mostrar el DataFrame
-        st.write(df)
+        st.write(Lista1)
         
         Transacciones = Lista1.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
         Lista = pd.DataFrame(Transacciones)
@@ -35,7 +31,8 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
-        return Lista1
+        return pd.DataFrame(df)
+    return("No hay archivo disponible")
 
 def apriori(data,soporte,elevacion,confianza):
     dataRecived = data.stack().groupby(level=0).apply(list).tolist()
@@ -52,16 +49,10 @@ def apriori(data,soporte,elevacion,confianza):
         st.write("Regla: " + str(item[0]))
     #El segundo índice de la lista
         st.write("Soporte: " + str(item[1]))
-
         #El tercer índice de la lista
         st.write("Confianza: " + str(item[2][0][2]))
         st.write("Elevación: " + str(item[2][0][3])) 
         st.write("=====================================") # Aquí deberíamos asociar el valor correspondiente a la etiqueta
-
-
-
-    
-
 
 
 # Opciones de navegación y contenido de las páginas
@@ -79,16 +70,13 @@ selected_page = st.selectbox("", list(pages.keys()), index=0, key="navbar")
 st.title(selected_page)
 
 if selected_page == "Algoritmo Apriori":
-
     st.write(pages[selected_page])
-    data=cargar_datos()
-    if data is not None:
-
-        soporte=st.number_input("Ingrese el soporte minimo requerido")
-        elevacion=st.number_input("Ingrese la elevacion minima requerido")
-        confianza=st.number_input("Ingrese la confianza minima requerido")
-        if st.button("Calcular regla"):
-            apriori(data,soporte,elevacion,confianza)
+    data = cargar_datos()
+    soporte=st.number_input("Ingrese el soporte minimo requerido")
+    elevacion=st.number_input("Ingrese la elevacion minima requerido")
+    confianza=st.number_input("Ingrese la confianza minima requerido")
+    if st.button("Calcular regla"):
+       apriori(data,soporte,elevacion,confianza)
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
