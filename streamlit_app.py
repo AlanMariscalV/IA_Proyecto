@@ -19,17 +19,21 @@ def cargar_datos():
         Lista = Lista.groupby(by=[0], as_index=False).count().sort_values(by=['Frecuencia'], ascending=True) #Conteo
         Lista['Porcentaje'] = (Lista['Frecuencia'] / Lista['Frecuencia'].sum()) #Porcentaje
         Lista = Lista.rename(columns={0 : 'Item'})
-        fig=plt.figure(figsize=(16,20), dpi=300)
-        plt.ylabel('Item')
-        plt.xlabel('Frecuencia')
-        plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
-        st.pyplot(fig)
+        
        # Mostrar el DataFrame
         st.write(Lista1)        
         newList = Lista1.stack().groupby(level=0).apply(list).tolist()
         #newList = Lista1
-        return newList
+        return newList,Lista
     return("No hay archivo disponible")
+
+def mostrar_grafica(lista):
+    fig=plt.figure(figsize=(16,20), dpi=300)
+    plt.ylabel('Item')
+    plt.xlabel('Frecuencia')
+    plt.barh(lista['Item'], width=lista['Frecuencia'], color='red')
+    st.pyplot(fig)
+
 
 def apriori2(data,soporte,elevacion,confianza):
    
@@ -61,20 +65,26 @@ pages = {
     "Ti adoroooooo": "pque"
 }
 
+
 # Mostrar la barra de navegación en la parte superior
 selected_page = st.selectbox("", list(pages.keys()), index=0, key="navbar")
 
 # Renderizar la página seleccionada
 st.title(selected_page)
 
+#__________________________________________________ APRIORI_________________________________________________________________________
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
     dt = cargar_datos()
+    mostrar_grafica(dt[1])
     soporte=st.number_input("Ingrese el soporte minimo requerido")
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
     confianza=st.number_input("Ingrese la confianza minima requerido")
     if st.button("Calcular regla"):
-       apriori2(dt, soporte, elevacion, confianza)
+       apriori2(dt[0], soporte, elevacion, confianza)
+
+#__________________________________________________ metricas_distancia_________________________________________________________________________
+
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
