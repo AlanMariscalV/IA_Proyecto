@@ -15,7 +15,7 @@ def cargar_datos():
         Lista1 = pd.read_csv(uploaded_file, header = None)
         Lista1.drop([0], axis=0,inplace=True)
         Lista1.drop([0], axis=1,inplace=True)
-
+        newList = Lista1
         # Mostrar el DataFrame
         st.write(Lista1)
         
@@ -31,7 +31,7 @@ def cargar_datos():
         plt.xlabel('Frecuencia')
         plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
         st.pyplot(fig)
-        return uploaded_file
+        return newList
     return("No hay archivo disponible")
 
 def apriori(data,soporte,elevacion,confianza):
