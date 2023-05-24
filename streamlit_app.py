@@ -36,7 +36,10 @@ def cargar_datos():
     return("No hay archivo disponible")
 
 def apriori(data,soporte,elevacion,confianza):
-    ReglasC1 = apriori(data,soporte,confianza,elevacion)
+    ReglasC1 = apriori(VentaLista, 
+                   min_support=soporte, 
+                   min_confidence=confianza, 
+                   min_lift=elevacion)
     ResultadosC1 = list(ReglasC1)
     pd.DataFrame(ResultadosC1)
     for item in ResultadosC1:
