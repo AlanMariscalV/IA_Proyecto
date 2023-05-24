@@ -2,14 +2,10 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt 
 
-# Variable de estado para realizar el seguimiento de la página actual
-current_page = st.sidebar.radio("Navegación", ["Inicio", "Página 1", "Página 2", "Página 3"])
+# Título de la página
+st.title("Carga de archivo CSV en Streamlit")
 
-# Renderizar la página actual en función de la selección
-if current_page == "Inicio":
-    st.title("Página de Inicio")
-    # Contenido de la página de inicio
-    # Componente para cargar el archivo CSV
+# Componente para cargar el archivo CSV
 uploaded_file = st.file_uploader("Selecciona un archivo CSV", type=["csv"])
 
 # Verificar si se cargó un archivo
@@ -32,10 +28,3 @@ if uploaded_file is not None:
     plt.xlabel('Frecuencia')
     plt.barh(Lista['Item'], width=Lista['Frecuencia'], color='red')
     st.pyplot(fig)
-
-elif current_page == "Página 1":
-    st.title("Página 1")
-    # Contenido de la página 1
-
-elif current_page == "Página 2":
-    st.title("Página 2")
