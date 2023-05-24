@@ -28,6 +28,7 @@ def cargar_datos():
         st.write(Lista1)        
         Lista1.stack().groupby(level=0).apply(list).tolist()
         newList = Lista1
+        st.write(newList)  
         return newList
     return("No hay archivo disponible")
 
