@@ -32,7 +32,7 @@ def cargar_datos(seleccion):
         st.write(Lista1)        
         newList = Lista1.stack().groupby(level=0).apply(list).tolist()
         #newList = Lista1
-        return newList,Lista1
+        return newList,Lista1,Lista
     return("No hay archivo disponible")
 
 def mostrar_grafica(lista):
@@ -117,7 +117,7 @@ st.title(selected_page)
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
     dt = cargar_datos(0)
-    mostrar_grafica(dt[1])
+    mostrar_grafica(dt[2])
     soporte=st.number_input("Ingrese el soporte minimo requerido")
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
     confianza=st.number_input("Ingrese la confianza minima requerido")
