@@ -77,8 +77,11 @@ def sacarDistancia(metrica,MEstandarizada):
         options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
         selected_options = st.multiselect('Selecciona dos objetos para sacar la distancia:', options)
         if len(selected_options) == 2:
-            Objeto1 = MEstandarizada[selected_options[0]]
-            Objeto2 = MEstandarizada[selected_options[1]]
+            o=[]
+            for elecciones in selected_options:
+                o.append(int(elecciones))
+            Objeto1 = MEstandarizada[o[0]]
+            Objeto2 = MEstandarizada[o[1]]
             if metrica == 1: 
                 dst = distance.euclidean(Objeto1,Objeto2)
             elif metrica == 2: 
