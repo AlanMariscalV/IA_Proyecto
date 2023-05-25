@@ -125,7 +125,7 @@ def ACD(data):
     df=pd.DataFrame(data)
     nombres_columnas=df.columns
     st.write(nombres_columnas)
-    options = [a for a in range(2, len(data.columns))]
+    options = [nombres_columnas[a] for a in range(2, len(data.columns))]
     selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
     if st.button("Enviar dato"):
         o=[]
