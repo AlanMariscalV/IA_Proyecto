@@ -134,6 +134,7 @@ elif selected_page == "Metricas de distancia":
   
    
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
+    Matriz=[0]
     if selected_option == 'Métrica Euclidiana':
         st.write('Opción 1 seleccionada')
         opcion = 1
@@ -154,8 +155,8 @@ elif selected_page == "Metricas de distancia":
         opcion = 4
         input_lambda = st.number_input("Ingresa el valor de lambda: ")
         if st.button("Obtener matriz"): 
-             Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
-             sacarDistancia(opcion,Matriz,lambda2=input_lambda)
+            Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
+        sacarDistancia(opcion,Matriz,lambda2=input_lambda)
 
     
     
