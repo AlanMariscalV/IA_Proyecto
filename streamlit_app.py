@@ -73,7 +73,7 @@ def metricas(dato,metrica_seleccionada,lambda1 = 0):
     st.write(Matriz.round(3))
     return Matriz
     
-def sacarDistancia(metrica,MEstandarizada):
+def sacarDistancia(metrica,MEstandarizada,lamda2 = 0):
         options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
         selected_options = st.multiselect('Selecciona dos objetos para sacar la distancia:', options)
         if len(selected_options) == 2:
@@ -89,7 +89,7 @@ def sacarDistancia(metrica,MEstandarizada):
             elif metrica == 3: 
                 dst = distance.chebyshev(Objeto1,Objeto2)
             elif metrica == 4: 
-                dst = distance.minkowski(Objeto1,Objeto2)
+                dst = distance.minkowski(Objeto1,Objeto2,lamda2)
             st.write("La distancia entre los objetos es: ", dst)
         elif len(selected_options) > 2:
             st.write('¡Has seleccionado más de dos opciones! Selecciona solo dos.')
@@ -152,7 +152,7 @@ elif selected_page == "Metricas de distancia":
         input_lambda = st.number_input("Ingresa el valor de lambda: ")
         if st.button("Obtener matriz"): 
              Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
-    sacarDistancia(opcion,Matriz)
+    sacarDistancia(opcion,Matriz,lambda1=input_lambda)
     
 #HOLA MI AMOR <3
 elif selected_page == "Clustering":
