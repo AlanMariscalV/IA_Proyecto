@@ -118,8 +118,13 @@ def ACD(data):
     MatrizInf = np.triu(Correlacion)
     sns.heatmap(Correlacion, cmap='RdBu_r', annot=True, mask=MatrizInf)
     st.write(figura)
-    
-
+    options = [a for a in range(0, len(data[0]))]
+    selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
+    if st.button("Enviar dato"):
+        o=[]
+        for elecciones in selected_options:
+            o.append(int(elecciones))
+        st.write(o)
 
 # Opciones de navegación y contenido de las páginas
 pages = {
