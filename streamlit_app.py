@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt 
 from apyori import apriori
+from scipy.spatial.distance import cdist 
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
     
 # Estilos CSS para personalizar la barra de navegación
 
@@ -53,8 +55,14 @@ def apriori2(data,soporte,elevacion,confianza):
         st.write("Confianza: " + str(item[2][0][2]))
         st.write("Elevación: " + str(item[2][0][3])) 
         st.write("<----------------------------------------> :)")
-def metricas(metrica_seleccionada):
-    print("hola")
+def metricas(dato,metrica_seleccionada):
+    estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
+    MEstandarizada = estandarizar.fit_transform(dato)
+    estandarizadapd = pd.DataFrame(MEstandarizada)
+    Dst = cdist(estandarizadapd, estandarizadapd, metric=metrica_seleccionada)
+    Matriz = pd.DataFrame(Dst)
+    st.write(Matriz.round(3))
+   
 
 
 # Opciones de navegación y contenido de las páginas
@@ -88,18 +96,23 @@ if selected_page == "Algoritmo Apriori":
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
-    cargar_datos()
+    dato=cargar_datos()
+    metricas(dato[1])
     # Casilla de verificación 1
     option1 = st.checkbox('Euclidiana')
+    metricas(dato[1],'euclidean')
 
     # Casilla de verificación 2
     option2 = st.checkbox('Manhattan')
+    metricas(dato[1],'cityblock')
 
     # Casilla de verificación 3
     option3 = st.checkbox('Chevishev')
+    metricas(dato[1],'chebyshev')
 
     # Casilla de verificación 4
     option4 = st.checkbox('Minkowski')
+    metricas(dato[1],'minkowski')
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
     if option1:
         st.write('Opción 1 seleccionada')
