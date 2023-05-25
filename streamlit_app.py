@@ -158,6 +158,7 @@ elif selected_page == "Metricas de distancia":
             Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
             
         sacarDistancia(opcion,Matriz,lambda2=input_lambda)
+        print("hola mivida")
 
     
     
