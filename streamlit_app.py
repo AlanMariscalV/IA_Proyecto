@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 from apyori import apriori
 from scipy.spatial.distance import cdist 
+from scipy.spatial import distance
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
     
 # Estilos CSS para personalizar la barra de navegación
@@ -70,8 +71,9 @@ def metricas(dato,metrica_seleccionada,lambda1 = 0):
         Dst = cdist(estandarizadapd[0:10], estandarizadapd[0:10], metric=metrica_seleccionada)
     Matriz = pd.DataFrame(Dst)
     st.write(Matriz.round(3))
+    return Matriz
     
- def sacarDistancia(metrica):
+def sacarDistancia(metrica,MEstandarizada):
         options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
         selected_options = st.multiselect('Selecciona dos objetos para sacar la distancia:', options)
         if len(selected_options) == 2:
@@ -132,22 +134,22 @@ elif selected_page == "Metricas de distancia":
     if selected_option == 'Métrica Euclidiana':
         st.write('Opción 1 seleccionada')
         opcion = 1
-        metricas(dato[1], 'euclidean')
+        Matriz=metricas(dato[1], 'euclidean')
     if selected_option == 'Métrica Manhattan':
         st.write('Opción 2 seleccionada')
         opcion = 2
-        metricas(dato[1],'cityblock')
+        Matriz=metricas(dato[1],'cityblock')
     if selected_option == 'Métrica Chevishev':
         st.write('Opción 3 seleccionada')
         opcion = 3
-        metricas(dato[1],'chebyshev')
+        Matriz=metricas(dato[1],'chebyshev')
     if selected_option == 'Métrica Minkowski':
         st.write('Opción 4 seleccionada')
         opcion = 4
         input_lambda = st.number_input("Ingresa el valor de lambda: ")
         if st.button("Obtener matriz"): 
-             metricas(dato[1],'minkowski',lambda1= input_lambda)
-    sacarDistancia(opcion)
+             Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
+    sacarDistancia(opcion,Matriz)
     
 #HOLA MI AMOR <3
 elif selected_page == "Clustering":
