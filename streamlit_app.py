@@ -118,7 +118,8 @@ def ACD(data):
     MatrizInf = np.triu(Correlacion)
     sns.heatmap(Correlacion, cmap='RdBu_r', annot=True, mask=MatrizInf)
     st.write(figura)
-    options = [a for a in range(0, len(data[0]))]
+    #options = [a for a in range(0, len(data[0]))]
+    options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
     selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
     if st.button("Enviar dato"):
         o=[]
@@ -196,8 +197,8 @@ elif selected_page == "Metricas de distancia":
 elif selected_page == "Clustering":
     st.write(pages[selected_page])
     dato=cargar_datos(1)
-    #ACD(dato[1])
-    st.write(dato[1])
+    ACD(dato[1])
+    #st.write(dato[1])
 
 
 elif selected_page == "Ti adoroooooo":
