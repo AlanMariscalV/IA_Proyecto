@@ -148,7 +148,8 @@ def Cluster_Jerarquico(data_frame,csv,lista):
     csv['clusterH'] = MJerarquico.labels_
     st.write(csv)
     st.write(csv.groupby(['clusterH'])['clusterH'].count())
-    CentroidesH = data_frame.groupby(['clusterH'])[lista].mean()
+    CentroidesH = data_frame.groupby(['clusterH'])(lista).mean()
+    st.write(CentroidesH)
 
    
 
@@ -228,6 +229,7 @@ elif selected_page == "Clustering":
     dato=cargar_datos(1)
     dt=ACD(dato[1])
     Cluster_Jerarquico(dt[0],dato[1],dt[1])
+
     
 
     #st.write(dato[1])
