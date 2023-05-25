@@ -130,10 +130,8 @@ def ACD(data):
     if st.button("Enviar dato"):
         o=[]
         for elecciones in selected_options:
-            st.write(nombres_columnas[int(elecciones)])
-            #o.append(int(elecciones))
-    #    MatrizVariables=np.array(data.columns[6])
-    #    st.write(MatrizVariables)
+           MatrizVariables=np.array(data[selected_option.tolist()])
+        st.write(MatrizVariables)
         
 
 # Opciones de navegación y contenido de las páginas
