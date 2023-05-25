@@ -135,13 +135,20 @@ def ACD(data):
         pd_estandarizado=pd.DataFrame(MEstandarizada)
         return pd_estandarizado
     
-def Cluster_Jerarquico(data_frame):
+def Cluster_Jerarquico(data_frame,csv):
     figura= plt.figure(figsize=(10, 7))
     plt.title("Pacientes con cáncer de mama")
     plt.xlabel('Observaciones')
     plt.ylabel('Distancia')
     Arbol = shc.dendrogram(shc.linkage(data_frame, method='complete', metric='euclidean'))
     st.write(figura)
+    numero = st.number_input("Ingrese el numero de clusters", step=1, value=0, format="%d")
+    MJerarquico = AgglomerativeClustering(n_cluster=numero, linkage='complete', affinity='euclidean')
+    MJerarquico.fit_predict(data_frame)
+    csv['clusterH'] = MJerarquico.labels_
+    st.write(csv)
+   
+
     #plt.axhline(y=5.4, color='orange', linestyle='--')
     #Probar con otras mediciones de distancia (chebyshev, cityblock)
     
@@ -217,7 +224,8 @@ elif selected_page == "Clustering":
     st.write(pages[selected_page])
     dato=cargar_datos(1)
     dt=ACD(dato[1])
-    Cluster_Jerarquico(dt)
+    Cluster_Jerarquico(dt,dato[1])
+    
 
     #st.write(dato[1])
 
