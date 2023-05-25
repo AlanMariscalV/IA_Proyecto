@@ -138,21 +138,25 @@ elif selected_page == "Metricas de distancia":
         st.write('Opción 1 seleccionada')
         opcion = 1
         Matriz=metricas(dato[1], 'euclidean')
+        sacarDistancia(opcion,Matriz)
     if selected_option == 'Métrica Manhattan':
         st.write('Opción 2 seleccionada')
         opcion = 2
         Matriz=metricas(dato[1],'cityblock')
+        sacarDistancia(opcion,Matriz)
     if selected_option == 'Métrica Chevishev':
         st.write('Opción 3 seleccionada')
         opcion = 3
         Matriz=metricas(dato[1],'chebyshev')
+        sacarDistancia(opcion,Matriz)
     if selected_option == 'Métrica Minkowski':
         st.write('Opción 4 seleccionada')
         opcion = 4
         input_lambda = st.number_input("Ingresa el valor de lambda: ")
         if st.button("Obtener matriz"): 
              Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
-    sacarDistancia(opcion,Matriz,lambda2=input_lambda)
+        sacarDistancia(opcion,Matriz,lambda2=input_lambda)
+    
     
 #HOLA MI AMOR <3
 elif selected_page == "Clustering":
