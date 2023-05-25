@@ -127,7 +127,7 @@ def ACD(data):
     st.write(nombres_columnas)
     options = [nombres_columnas[a] for a in range(2, len(data.columns))]
     selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
-    if st.button("Enviar dato"):
+    if st.checkbox("Enviar dato"):
         MatrizVariables=np.array(data[selected_options])
         st.write(MatrizVariables)
         estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
