@@ -147,6 +147,7 @@ def Cluster_Jerarquico(data_frame,csv):
     MJerarquico.fit_predict(data_frame)
     csv['clusterH'] = MJerarquico.labels_
     st.write(csv)
+    st.write(csv.groupby(['clusterH'])['clusterH'].count())
    
 
     #plt.axhline(y=5.4, color='orange', linestyle='--')
