@@ -133,9 +133,9 @@ def ACD(data):
         estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
         MEstandarizada = estandarizar.fit_transform(MatrizVariables)   # Se calculan la media y desviación y se escalan los datos
         pd_estandarizado=pd.DataFrame(MEstandarizada)
-        return pd_estandarizado
+        return pd_estandarizado,selected_options
     
-def Cluster_Jerarquico(data_frame,csv):
+def Cluster_Jerarquico(data_frame,csv,lista):
     figura= plt.figure(figsize=(10, 7))
     plt.title("Pacientes con cáncer de mama")
     plt.xlabel('Observaciones')
@@ -148,6 +148,8 @@ def Cluster_Jerarquico(data_frame,csv):
     csv['clusterH'] = MJerarquico.labels_
     st.write(csv)
     st.write(csv.groupby(['clusterH'])['clusterH'].count())
+    CentroidesH = data_frame.groupby(['clusterH'])[lista].mean()
+
    
 
     #plt.axhline(y=5.4, color='orange', linestyle='--')
@@ -225,7 +227,7 @@ elif selected_page == "Clustering":
     st.write(pages[selected_page])
     dato=cargar_datos(1)
     dt=ACD(dato[1])
-    Cluster_Jerarquico(dt,dato[1])
+    Cluster_Jerarquico(dt[0],dato[1],dt[1])
     
 
     #st.write(dato[1])
