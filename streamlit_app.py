@@ -95,7 +95,8 @@ def sacarDistancia(metrica,MEstandarizada,lambda2 = 0):
             st.write('¡Has seleccionado más de dos opciones! Selecciona solo dos.')
         else:
             st.write('Selecciona dos opciones.')
-
+        st.write(Objeto1)
+        st.write(Objeto2)
 
 # Opciones de navegación y contenido de las páginas
 pages = {
