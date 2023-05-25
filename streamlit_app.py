@@ -154,8 +154,9 @@ elif selected_page == "Metricas de distancia":
         st.write('Opción 4 seleccionada')
         opcion = 4
         input_lambda = st.number_input("Ingresa el valor de lambda: ")
-        if st.button("Obtener matriz"): 
+        if st.checkbox("Obtener matriz"): 
             Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
+            
         sacarDistancia(opcion,Matriz,lambda2=input_lambda)
 
     
