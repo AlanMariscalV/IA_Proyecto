@@ -64,7 +64,7 @@ def metricas(dato,metrica_seleccionada):
     estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
     MEstandarizada = estandarizar.fit_transform(dato)
     estandarizadapd = pd.DataFrame(MEstandarizada)
-    Dst = cdist(estandarizadapd, estandarizadapd, metric=metrica_seleccionada)
+    Dst = cdist(estandarizadapd[0:10], estandarizadapd[0:10], metric=metrica_seleccionada)
     Matriz = pd.DataFrame(Dst)
     st.write(Matriz.round(3))
    
