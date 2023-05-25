@@ -60,11 +60,14 @@ def apriori2(data,soporte,elevacion,confianza):
         st.write("Confianza: " + str(item[2][0][2]))
         st.write("Elevación: " + str(item[2][0][3])) 
         st.write("<----------------------------------------> :)")
-def metricas(dato,metrica_seleccionada):
+def metricas(dato,metrica_seleccionada,lambda1 = 0):
     estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
     MEstandarizada = estandarizar.fit_transform(dato)
     estandarizadapd = pd.DataFrame(MEstandarizada)
-    Dst = cdist(estandarizadapd[0:10], estandarizadapd[0:10], metric=metrica_seleccionada)
+    if metrica_seleccionada == 'minkowski':
+       Dst = cdist(estandarizadapd[0:10], estandarizadapd[0:10], metric=metrica_seleccionada, p=lambda1)
+    else:
+        Dst = cdist(estandarizadapd[0:10], estandarizadapd[0:10], metric=metrica_seleccionada)
     Matriz = pd.DataFrame(Dst)
     st.write(Matriz.round(3))
    
@@ -101,9 +104,9 @@ if selected_page == "Algoritmo Apriori":
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
+    dato=cargar_datos(1)
     options = ['Métrica Euclidiana', 'Métrica Manhattan', 'Métrica Chevishev', 'Métrica Minkowski']
     selected_option = st.radio('Selecciona una opción:', options)
-    dato=cargar_datos(1)
   
    
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
@@ -118,7 +121,9 @@ elif selected_page == "Metricas de distancia":
         metricas(dato[1],'chebyshev')
     if selected_option == 'Métrica Minkowski':
         st.write('Opción 4 seleccionada')
-        metricas(dato[1],'chebyshev')
+        input_lambda = st.number_input("Ingresa el valor de lambda: ")
+        if st.button("Obtener matriz"): 
+             metricas(dato[1],'minkowski',lambda1= input_lambda)
 
 
 
