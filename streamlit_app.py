@@ -129,7 +129,7 @@ def ACD(data):
         o=[]
         for elecciones in selected_options:
             o.append(int(elecciones))
-        MatrizVariables=np.array(data.columns[0])
+        MatrizVariables=np.array(data.columns[6])
         st.write(MatrizVariables)
         
 
