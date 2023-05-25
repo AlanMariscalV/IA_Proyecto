@@ -104,18 +104,18 @@ elif selected_page == "Metricas de distancia":
     dato=cargar_datos(1)
    
     # Casilla de verificación 1
-    option1 = st.checkbox('Euclidiana')
+    option1 = st.radio('Euclidiana')
     
 
     # Casilla de verificación 2
-    option2 = st.checkbox('Manhattan')
+    option2 = st.radio('Manhattan')
    
 
     # Casilla de verificación 3
-    option3 = st.checkbox('Chevishev')
+    option3 = st.radio('Chevishev')
     
     # Casilla de verificación 4
-    option4 = st.checkbox('Minkowski')
+    option4 = st.radio('Minkowski')
    
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
     if option1:
