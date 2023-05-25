@@ -134,6 +134,17 @@ def ACD(data):
         MEstandarizada = estandarizar.fit_transform(MatrizVariables)   # Se calculan la media y desviación y se escalan los datos
         pd_estandarizado=pd.DataFrame(MEstandarizada)
         return pd_estandarizado
+    
+def Cluster_Jerarquico(data_frame):
+    figura= plt.figure(figsize=(10, 7))
+    plt.title("Pacientes con cáncer de mama")
+    plt.xlabel('Observaciones')
+    plt.ylabel('Distancia')
+    Arbol = shc.dendrogram(shc.linkage(data_frame, method='complete', metric='euclidean'))
+    st.write(figura)
+    #plt.axhline(y=5.4, color='orange', linestyle='--')
+    #Probar con otras mediciones de distancia (chebyshev, cityblock)
+
         
   
    
@@ -222,7 +233,9 @@ elif selected_page == "Metricas de distancia":
 elif selected_page == "Clustering":
     st.write(pages[selected_page])
     dato=cargar_datos(1)
-    ACD(dato[1])
+    dt=ACD(dato[1])
+    Cluster_Jerarquico(dt)
+
     #st.write(dato[1])
 
 
