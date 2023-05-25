@@ -6,8 +6,13 @@ from apyori import apriori
 from scipy.spatial.distance import cdist 
 from scipy.spatial import distance
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+import seaborn as sns             # Para la visualización de datos basado en matplotlib
+import scipy.cluster.hierarchy as shc
+from sklearn.cluster import AgglomerativeClustering
+from kneed import KneeLocator
     
-# Estilos CSS para personalizar la barra de navegación
+
+#__________________________________________________ FUNCION CARGAR DATOS_________________________________________________________________________
 
 def cargar_datos(seleccion):
      # Componente para cargar el archivo CSV
@@ -35,6 +40,9 @@ def cargar_datos(seleccion):
         return newList,Lista1,Lista
     return("No hay archivo disponible")
 
+#__________________________________________________ FUNCION MOSTRAR GRAFICA_________________________________________________________________________
+
+
 def mostrar_grafica(lista):
     fig=plt.figure(figsize=(16,20), dpi=300)
     plt.ylabel('Item')
@@ -42,6 +50,7 @@ def mostrar_grafica(lista):
     plt.barh(lista['Item'], width=lista['Frecuencia'], color='red')
     st.pyplot(fig)
 
+#__________________________________________________ FUNCION APRIORI_________________________________________________________________________
 
 def apriori2(data,soporte,elevacion,confianza):
    
@@ -61,6 +70,9 @@ def apriori2(data,soporte,elevacion,confianza):
         st.write("Confianza: " + str(item[2][0][2]))
         st.write("Elevación: " + str(item[2][0][3])) 
         st.write("<----------------------------------------> :)")
+
+#__________________________________________________ FUNCION METRICAS________________________________________________________________________
+
 def metricas(dato,metrica_seleccionada,lambda1 = 0):
     estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
     MEstandarizada = estandarizar.fit_transform(dato)
@@ -73,6 +85,8 @@ def metricas(dato,metrica_seleccionada,lambda1 = 0):
     st.write(Matriz.round(3))
     return Matriz
     
+#__________________________________________________ FUNCION DISTANCIA_________________________________________________________________________
+
 def sacarDistancia(metrica,MEstandarizada,lambda2 = 0):
         options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
         selected_options = st.multiselect('Selecciona dos objetos para sacar la distancia:', options)
@@ -96,6 +110,16 @@ def sacarDistancia(metrica,MEstandarizada,lambda2 = 0):
                 st.write('¡Has seleccionado más de dos opciones! Selecciona solo dos.')
             else:
                 st.write('Selecciona dos opciones.')
+
+
+def ACD(data):
+    Correlacion=data.corr(method='pearson')
+    figura=plt.figure(figsize=(14,7))
+    MatrizInf = np.triu(Correlacion)
+    sns.heatmap(Correlacion, cmap='RdBu_r', annot=True, mask=MatrizInf)
+    st.write(figura)
+    
+
 
 # Opciones de navegación y contenido de las páginas
 pages = {
@@ -161,11 +185,14 @@ elif selected_page == "Metricas de distancia":
         print("hola mivida")
 
     
+#__________________________________________________ CLUSTERING_________________________________________________________________________
     
 #HOLA MI AMOR <3
 elif selected_page == "Clustering":
     st.write(pages[selected_page])
-    cargar_datos()
+    dato=cargar_datos(1)
+    ACD(dato)
+
 
 elif selected_page == "Ti adoroooooo":
     st.write(pages[selected_page])
