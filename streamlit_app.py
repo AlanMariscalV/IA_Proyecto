@@ -31,7 +31,7 @@ def cargar_datos(seleccion):
         st.write(Lista1)        
         newList = Lista1.stack().groupby(level=0).apply(list).tolist()
         #newList = Lista1
-        return newList,Lista
+        return newList,Lista1
     return("No hay archivo disponible")
 
 def mostrar_grafica(lista):
