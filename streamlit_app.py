@@ -112,18 +112,41 @@ elif selected_page == "Metricas de distancia":
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
     if selected_option == 'Métrica Euclidiana':
         st.write('Opción 1 seleccionada')
-        metricas(dato[1],'euclidean')
+        opcion = 1
+        metricas(dato[1], 'euclidean')
     if selected_option == 'Métrica Manhattan':
         st.write('Opción 2 seleccionada')
+        opcion = 2
         metricas(dato[1],'cityblock')
     if selected_option == 'Métrica Chevishev':
         st.write('Opción 3 seleccionada')
+        opcion = 3
         metricas(dato[1],'chebyshev')
     if selected_option == 'Métrica Minkowski':
         st.write('Opción 4 seleccionada')
+        opcion = 4
         input_lambda = st.number_input("Ingresa el valor de lambda: ")
         if st.button("Obtener matriz"): 
              metricas(dato[1],'minkowski',lambda1= input_lambda)
+    def sacarDistancia(metrica):
+        options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
+        selected_options = st.multiselect('Selecciona dos objetos para sacar la distancia:', options)
+        if len(selected_options) == 2:
+            Objeto1 = MEstandarizada[selected_options[0]]
+            Objeto2 = MEstandarizada[selected_options[1]]
+            if metrica == 1: 
+                dst = distance.euclidean(Objeto1,Objeto2)
+            elif metrica == 2: 
+                dst = distance.cityblock(Objeto1,Objeto2)
+            elif metrica == 3: 
+                dst = distance.chebyshev(Objeto1,Objeto2)
+            elif metrica == 4: 
+                dst = distance.minkowski(Objeto1,Objeto2)
+            st.write("La distancia entre los objetos es: ", dst)
+        elif len(selected_options) > 2:
+            st.write('¡Has seleccionado más de dos opciones! Selecciona solo dos.')
+        else:
+            st.write('Selecciona dos opciones.')
 
 
 
