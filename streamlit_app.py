@@ -129,7 +129,9 @@ def ACD(data):
         o=[]
         for elecciones in selected_options:
             o.append(int(elecciones))
-        st.write(o)
+        MatrizVariables=np.array(data[[0,1,2]])
+        st.write(MatrizVariables)
+        
 
 # Opciones de navegación y contenido de las páginas
 pages = {
