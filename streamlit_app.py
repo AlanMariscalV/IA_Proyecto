@@ -125,13 +125,13 @@ def ACD(data):
     df=pd.DataFrame(data)
     nombres_columnas=df.columns
     st.write(nombres_columnas)
-    #options = [a for a in range(2, len(data.columns))]
-    #options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
-    #selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
-    #if st.button("Enviar dato"):
-    #    o=[]
-    #    for elecciones in selected_options:
-    #        o.append(int(elecciones))
+    options = [a for a in range(2, len(data.columns))]
+    selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
+    if st.button("Enviar dato"):
+        o=[]
+        for elecciones in selected_options:
+            st.write(nombres_columnas[int(elecciones)])
+            #o.append(int(elecciones))
     #    MatrizVariables=np.array(data.columns[6])
     #    st.write(MatrizVariables)
         
