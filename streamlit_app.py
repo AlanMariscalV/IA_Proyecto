@@ -119,16 +119,17 @@ def ACD(data):
     sns.heatmap(Correlacion, cmap='RdBu_r', annot=True, mask=MatrizInf)
     st.write(figura)
     options=[]
-    for i in range(0,len(data[0])):
-        options.append(i)
+   # for i in range(0,len(data[0])):
+    #    options.append(i)
+    st.write(len(data[0]))
  #options = [a for a in range(0, len(data[0]))]
     #options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
-    selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
-    if st.button("Enviar dato"):
-        o=[]
-        for elecciones in selected_options:
-            o.append(int(elecciones))
-        st.write(o)
+    #selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
+    #if st.button("Enviar dato"):
+    #    o=[]
+    #    for elecciones in selected_options:
+    #        o.append(int(elecciones))
+    #    st.write(o)
 
 # Opciones de navegación y contenido de las páginas
 pages = {
