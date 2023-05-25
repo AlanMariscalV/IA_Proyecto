@@ -143,7 +143,7 @@ def Cluster_Jerarquico(data_frame,csv):
     Arbol = shc.dendrogram(shc.linkage(data_frame, method='complete', metric='euclidean'))
     st.write(figura)
     numero = st.number_input("Ingrese el numero de clusters", step=1, value=0, format="%d")
-    MJerarquico = AgglomerativeClustering(n_cluster=numero, linkage='complete', affinity='euclidean')
+    MJerarquico = AgglomerativeClustering(n_clusters=numero, linkage='complete', affinity='euclidean')
     MJerarquico.fit_predict(data_frame)
     csv['clusterH'] = MJerarquico.labels_
     st.write(csv)
