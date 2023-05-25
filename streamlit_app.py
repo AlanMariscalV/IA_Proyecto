@@ -122,7 +122,7 @@ def ACD(data):
    # for i in range(0,len(data[0])):
     #    options.append(i)
     #st.write(len(data.columns))
-    options = [a for a in range(0, len(data.columns))]
+    options = [a for a in range(2, len(data.columns))]
     #options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
     selected_options = st.multiselect('Selecciona los indices de las variables que quieras trabajar', options)
     if st.button("Enviar dato"):
