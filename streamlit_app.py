@@ -97,29 +97,35 @@ if selected_page == "Algoritmo Apriori":
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
     dato=cargar_datos()
-    metricas(dato[1])
+   
     # Casilla de verificación 1
     option1 = st.checkbox('Euclidiana')
-    metricas(dato[1],'euclidean')
+    
 
     # Casilla de verificación 2
     option2 = st.checkbox('Manhattan')
-    metricas(dato[1],'cityblock')
+   
 
     # Casilla de verificación 3
     option3 = st.checkbox('Chevishev')
-    metricas(dato[1],'chebyshev')
-
+    
     # Casilla de verificación 4
     option4 = st.checkbox('Minkowski')
     metricas(dato[1],'minkowski')
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
     if option1:
         st.write('Opción 1 seleccionada')
+        metricas(dato[1],'euclidean')
     if option2:
         st.write('Opción 2 seleccionada')
+        metricas(dato[1],'cityblock')
     if option3:
         st.write('Opción 3 seleccionada')
+        metricas(dato[1],'chebyshev')
+    if option4:
+        st.write('Opción 4 seleccionada')
+        metricas(dato[1],'chebyshev')
+
 
 
 
