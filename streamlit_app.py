@@ -76,27 +76,26 @@ def metricas(dato,metrica_seleccionada,lambda1 = 0):
 def sacarDistancia(metrica,MEstandarizada,lambda2 = 0):
         options = ['0','1', '2', '3','4', '5', '6','7', '8', '9']
         selected_options = st.multiselect('Selecciona dos objetos para sacar la distancia:', options)
-        if len(selected_options) == 2:
-            o=[]
-            for elecciones in selected_options:
-                o.append(int(elecciones))
-            Objeto1 = MEstandarizada[o[0]]
-            Objeto2 = MEstandarizada[o[1]]
-            if metrica == 1: 
-                dst = distance.euclidean(Objeto1,Objeto2)
-            elif metrica == 2: 
-                dst = distance.cityblock(Objeto1,Objeto2)
-            elif metrica == 3: 
-                dst = distance.chebyshev(Objeto1,Objeto2)
-            elif metrica == 4: 
-                dst = distance.minkowski(Objeto1,Objeto2,lambda2)
-            st.write("La distancia entre los objetos es: ", dst)
-        elif len(selected_options) > 2:
-            st.write('¡Has seleccionado más de dos opciones! Selecciona solo dos.')
-        else:
-            st.write('Selecciona dos opciones.')
-        st.write(Objeto1)
-        st.write(Objeto2)
+        if st.button("Enviar dato"):
+            if len(selected_options) == 2:
+                o=[]
+                for elecciones in selected_options:
+                    o.append(int(elecciones))
+                Objeto1 = MEstandarizada[o[0]]
+                Objeto2 = MEstandarizada[o[1]]
+                if metrica == 1: 
+                    dst = distance.euclidean(Objeto1,Objeto2)
+                elif metrica == 2: 
+                    dst = distance.cityblock(Objeto1,Objeto2)
+                elif metrica == 3: 
+                    dst = distance.chebyshev(Objeto1,Objeto2)
+                elif metrica == 4: 
+                    dst = distance.minkowski(Objeto1,Objeto2,lambda2)
+                st.write("La distancia entre los objetos es: ", dst)
+            elif len(selected_options) > 2:
+                st.write('¡Has seleccionado más de dos opciones! Selecciona solo dos.')
+            else:
+                st.write('Selecciona dos opciones.')
 
 # Opciones de navegación y contenido de las páginas
 pages = {
@@ -157,6 +156,7 @@ elif selected_page == "Metricas de distancia":
         if st.button("Obtener matriz"): 
              Matriz=metricas(dato[1],'minkowski',lambda1= input_lambda)
         sacarDistancia(opcion,Matriz,lambda2=input_lambda)
+
     
     
 #HOLA MI AMOR <3
