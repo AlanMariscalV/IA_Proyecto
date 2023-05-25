@@ -130,6 +130,26 @@ def ACD(data):
     if st.button("Enviar dato"):
         MatrizVariables=np.array(data[selected_options])
         st.write(MatrizVariables)
+        estandarizar = StandardScaler()                               # Se instancia el objeto StandardScaler o MinMaxScaler 
+        MEstandarizada = estandarizar.fit_transform(MatrizVariables)   # Se calculan la media y desviación y se escalan los datos
+        pd_estandarizado=pd.DataFrame(MEstandarizada)
+        return pd_estandarizado
+        
+  
+   
+# Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
+    Matriz=[0]
+    if selected_option == 'Métrica Euclidiana':
+        st.write('Opción 1 seleccionada')
+        opcion = 1
+        Matriz=metricas(dato[1], 'euclidean')
+        sacarDistancia(opcion,Matriz)
+    if selected_option == 'Métrica Manhattan':
+        st.write('Opción 2 seleccionada')
+        opcion = 2
+        Matriz=metricas(dato[1],'cityblock')
+        sacarDistancia(opcion,Matriz)
+
         
 
 # Opciones de navegación y contenido de las páginas
