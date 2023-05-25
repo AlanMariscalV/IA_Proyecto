@@ -8,13 +8,18 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
     
 # Estilos CSS para personalizar la barra de navegación
 
-def cargar_datos():
+def cargar_datos(seleccion):
      # Componente para cargar el archivo CSV
     uploaded_file = st.file_uploader("Selecciona un archivo CSV", type=["csv"])
     # Verificar si se cargó un archivo
     if uploaded_file is not None:
         # Leer el archivo CSV y cargarlo en un DataFrame
-        Lista1 = pd.read_csv(uploaded_file, header = None)
+        #para apriori
+        if seleccion == 0:
+          Lista1 = pd.read_csv(uploaded_file, header = None)
+        #para metricas
+        elif seleccion == 1:
+            Lista1 = pd.read_csv(uploaded_file)
         Transacciones = Lista1.values.reshape(-1).tolist() #-1 significa 'dimensión no conocida'
         Lista = pd.DataFrame(Transacciones)
         Lista['Frecuencia'] = 1
@@ -83,7 +88,7 @@ st.title(selected_page)
 #__________________________________________________ APRIORI_________________________________________________________________________
 if selected_page == "Algoritmo Apriori":
     st.write(pages[selected_page])
-    dt = cargar_datos()
+    dt = cargar_datos(0)
     mostrar_grafica(dt[1])
     soporte=st.number_input("Ingrese el soporte minimo requerido")
     elevacion=st.number_input("Ingrese la elevacion minima requerido")
@@ -96,7 +101,7 @@ if selected_page == "Algoritmo Apriori":
     
 elif selected_page == "Metricas de distancia":
     st.write(pages[selected_page])
-    dato=cargar_datos()
+    dato=cargar_datos(1)
    
     # Casilla de verificación 1
     option1 = st.checkbox('Euclidiana')
@@ -111,7 +116,7 @@ elif selected_page == "Metricas de distancia":
     
     # Casilla de verificación 4
     option4 = st.checkbox('Minkowski')
-    metricas(dato[1],'minkowski')
+   
 # Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
     if option1:
         st.write('Opción 1 seleccionada')
