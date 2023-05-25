@@ -196,7 +196,7 @@ elif selected_page == "Metricas de distancia":
 elif selected_page == "Clustering":
     st.write(pages[selected_page])
     dato=cargar_datos(1)
-    ACD(dato[1])
+    #ACD(dato[1])
     st.write(dato[1])
 
 
