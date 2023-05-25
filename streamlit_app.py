@@ -144,24 +144,7 @@ def Cluster_Jerarquico(data_frame):
     st.write(figura)
     #plt.axhline(y=5.4, color='orange', linestyle='--')
     #Probar con otras mediciones de distancia (chebyshev, cityblock)
-
-        
-  
-   
-# Verificar el estado de las casillas de verificación y mostrar mensajes correspondientes
-    Matriz=[0]
-    if selected_option == 'Métrica Euclidiana':
-        st.write('Opción 1 seleccionada')
-        opcion = 1
-        Matriz=metricas(dato[1], 'euclidean')
-        sacarDistancia(opcion,Matriz)
-    if selected_option == 'Métrica Manhattan':
-        st.write('Opción 2 seleccionada')
-        opcion = 2
-        Matriz=metricas(dato[1],'cityblock')
-        sacarDistancia(opcion,Matriz)
-
-        
+    
 
 # Opciones de navegación y contenido de las páginas
 pages = {
